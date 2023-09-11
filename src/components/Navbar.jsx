@@ -1,20 +1,24 @@
 import {useState} from 'react';
-
-import {close, logo, menu} from '../assets';
+import {close, menu} from '../assets';
 import {navLinks} from "../constants/index";
 
-function Navbar(props) {
+function Navbar() {
     const [toggle, setToggle] = useState(false);
 
+    const closeMobileNav = () => {
+        setToggle(false);
+    };
+
     return (
-        <nav className={`w-full flex py-6 justify-between items-center navbar`}>
-            <img src={logo} alt={`sitelogo`} className={`w-[124px] h-[32px]`}/>
+        <nav className={`w-full flex py-6 justify-between items-center navbar`} id="navbar">
+            <p className={`w-[300px] h-[50px] text-gradient font-30 text-bold large-hidden`}>Developer Portfolio</p>
+            <p className={`w-[200px] h-[50px] text-gradient font-30 text-bold small-hidden`}>Portfolio</p>
 
             <ul className={`list-none sm:flex hidden justify-end items-center flex-1`}>
 
                 {navLinks.map((nav, index) => (
                     <li key={nav.id}
-                        className={`font-poppins font-normal cursor-pointer text-[16px] ${index === navLinks.length-1 ? `mr-0` : `mr-10`} text-white`}>
+                        className={`font-poppins nav-hover font-normal cursor-pointer text-[16px] ${index === navLinks.length-1 ? `mr-0` : `mr-10`} text-white`}>
                         <a href={`#${nav.id}`}>
                             {nav.title}
                         </a>
@@ -32,7 +36,7 @@ function Navbar(props) {
                         {navLinks.map((nav, index) => (
                             <li key={nav.id}
                                 className={`font-poppins font-normal cursor-pointer text-[16px] ${index === navLinks.length-1 ? `mb-0` : `mb-4`} text-white`}>
-                                <a href={`#${nav.id}`}>
+                                <a href={`#${nav.id}`} onClick={closeMobileNav}>
                                     {nav.title}
                                 </a>
                             </li>
